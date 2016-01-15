@@ -9,6 +9,8 @@
 #include <QDate>
 #include <QTime>
 
+#include <stdio.h>
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -55,8 +57,11 @@ void MainWindow::quitfunc()
 
 void MainWindow::on_actionAbout_triggered()
 {
-    QMessageBox::about(this, tr("Ix Trak"),
-               tr("Investigation tracker\n\nI Crossingham\n2016"));
+    char buffer[100];
+
+    sprintf(buffer, "Investigation tracker\nVersion number: %.2f\n\nI Crossingham\n2016",
+            VERSION_NUMBER);
+    QMessageBox::about(this, tr("Ix Trak"), buffer);
 }
 
 // Save the current data in window to disc
@@ -169,6 +174,21 @@ int MainWindow::savefunc()
     if(ui->lvfDiag->isChecked()) {
         diag["Diagnosis"] = "Heart failure";
         ui->lvfDiag->setChecked(false);
+        diagArray.append(diag);
+    }
+    if(ui->obDiag->isChecked()) {
+        diag["Diagnosis"] = "Obliterative bronchiolitis";
+        ui->obDiag->setChecked(false);
+        diagArray.append(diag);
+    }
+    if(ui->trachDiag->isChecked()) {
+        diag["Diagnosis"] = "Tracheomalacia";
+        ui->trachDiag->setChecked(false);
+        diagArray.append(diag);
+    }
+    if(ui->vteDiag->isChecked()) {
+        diag["Diagnosis"] = "Thromboembolic disease";
+        ui->vteDiag->setChecked(false);
         diagArray.append(diag);
     }
     if(ui->funcDiag->isChecked()) {
@@ -390,6 +410,10 @@ int MainWindow::savefunc()
     if(ui->radmeetCheck->isChecked()) {
         savedata["For radiology meeting"] = "True";
         ui->radmeetCheck->setChecked(false);
+    }
+    if(ui->juniorCheck->isChecked()) {
+        savedata["Seen by junior"] = "True";
+        ui->juniorCheck->setChecked(false);
     }
 
     QDate date;

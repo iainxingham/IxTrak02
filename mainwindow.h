@@ -9,6 +9,8 @@
 #define GROUP_CONTACT   1
 #define GROUP_DISPOSAL  2
 
+#define VERSION_NUMBER  1.01
+
 namespace Ui {
 class MainWindow;
 }

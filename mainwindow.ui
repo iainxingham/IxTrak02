@@ -166,7 +166,7 @@
       <x>200</x>
       <y>10</y>
       <width>151</width>
-      <height>381</height>
+      <height>451</height>
      </rect>
     </property>
     <property name="title">
@@ -176,7 +176,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>320</y>
+       <y>390</y>
        <width>131</width>
        <height>51</height>
       </rect>
@@ -187,8 +187,8 @@
       <rect>
        <x>10</x>
        <y>20</y>
-       <width>127</width>
-       <height>295</height>
+       <width>141</width>
+       <height>364</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
@@ -210,6 +210,13 @@
        <widget class="QCheckBox" name="bronchiectasisDiag">
         <property name="text">
          <string>Bronchiectasis</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="obDiag">
+        <property name="text">
+         <string>Obliterative bronchiolitis</string>
         </property>
        </widget>
       </item>
@@ -245,6 +252,20 @@
        <widget class="QCheckBox" name="sarcoidDiag">
         <property name="text">
          <string>Sarcoidosis</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="trachDiag">
+        <property name="text">
+         <string>Tracheomalacia</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="vteDiag">
+        <property name="text">
+         <string>Thromboembolic disease</string>
         </property>
        </widget>
       </item>
@@ -615,8 +636,8 @@
    <widget class="QCheckBox" name="radmeetCheck">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>410</y>
+      <x>530</x>
+      <y>420</y>
       <width>131</width>
       <height>17</height>
      </rect>
@@ -661,28 +682,6 @@
      <string>Follow up time</string>
     </property>
    </widget>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>10</y>
-      <width>161</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout"/>
-   </widget>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>40</y>
-      <width>161</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_2"/>
-   </widget>
    <widget class="QLineEdit" name="fuEdit">
     <property name="geometry">
      <rect>
@@ -696,8 +695,19 @@
      <string>09</string>
     </property>
    </widget>
-   <zorder>layoutWidget</zorder>
-   <zorder>layoutWidget</zorder>
+   <widget class="QCheckBox" name="juniorCheck">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>390</y>
+      <width>101</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Seen by junior</string>
+    </property>
+   </widget>
    <zorder>saveButton</zorder>
    <zorder>quitButton</zorder>
    <zorder>contactBox</zorder>
@@ -714,6 +724,7 @@
    <zorder>label_2</zorder>
    <zorder>label_4</zorder>
    <zorder>fuEdit</zorder>
+   <zorder>juniorCheck</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
