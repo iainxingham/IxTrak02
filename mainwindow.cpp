@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include "bmidialog.h"
+
 #include <QMessageBox>
 #include <QJsonObject>
 #include <QJsonDocument>
@@ -16,11 +18,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     newdata = 0;
+    calculated_values = new QJsonObject;
     ui->setupUi(this);
 }
 
 MainWindow::~MainWindow()
 {
+    delete calculated_values;
     delete ui;
 }
 
@@ -421,6 +425,15 @@ int MainWindow::savefunc()
     savedata["Date"] = date.currentDate().toString("dd:MM:yyyy");
     savedata["Time"] = time.currentTime().toString("hh:mm");
 
+    QStringList l;
+    l = calculated_values->keys();
+
+    foreach(QString s, l) {
+        savedata[s] = calculated_values->value(s);
+        calculated_values->remove(s);
+    }
+
+
     ui->fuEdit->clear();
 
     // Save json file
@@ -509,4 +522,43 @@ void MainWindow::uncheckall(int group)
         ui->letterDisp->setAutoExclusive(true);
         break;
     }
+}
+
+void MainWindow::on_actionBody_mass_index_triggered()
+{
+    bmidialog *bmi;
+    double ht, wt;
+    QString s;
+
+    bmi = new bmidialog(this);
+
+
+    if(calculated_values->contains("Height"))
+        bmi->setht(calculated_values->value("Height").toDouble());
+    if(calculated_values->contains("Weight"))
+        bmi->setwt(calculated_values->value("Weight").toDouble());
+    /*
+    if(calculated_values->contains("Height")) {
+        ht = calculated_values->value("Height").toDouble();
+        QMessageBox::about(this, "Debug - height", s.setNum(ht));
+        QMessageBox::about(this, "Debug - calculated_values", calculated_values->value("Height").toString());
+        QMessageBox::about(this, "Debug - type", s.setNum(calculated_values->value("Height").type()));
+    }
+    else ht = 0.0;
+    if(calculated_values->contains("Weight"))
+        wt = calculated_values->value("Weight").toDouble();
+    else wt = 0.0;
+
+    bmi = new bmidialog(this, ht, wt);*/
+
+    if(bmi->exec() == QDialog::Accepted) {
+        if(bmi->validbmi()) {
+            calculated_values->insert("Height", bmi->getht());
+            //calculated_values->insert("Height", s.setNum(bmi->getht())); //just pass a double here?
+            calculated_values->insert("Weight", bmi->getwt());
+            calculated_values->insert("BMI", bmi->getbmi());
+        }
+    }
+
+    delete bmi;
 }

@@ -749,7 +749,15 @@
     </property>
     <addaction name="actionAbout"/>
    </widget>
+   <widget class="QMenu" name="menuCalculators">
+    <property name="title">
+     <string>Calculators</string>
+    </property>
+    <addaction name="actionSpirometry"/>
+    <addaction name="actionBody_mass_index"/>
+   </widget>
    <addaction name="menuInvestigation_Tracker"/>
+   <addaction name="menuCalculators"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -774,6 +782,16 @@
   <action name="actionAbout">
    <property name="text">
     <string>About</string>
+   </property>
+  </action>
+  <action name="actionSpirometry">
+   <property name="text">
+    <string>Spirometry</string>
+   </property>
+  </action>
+  <action name="actionBody_mass_index">
+   <property name="text">
+    <string>Body mass index</string>
    </property>
   </action>
  </widget>

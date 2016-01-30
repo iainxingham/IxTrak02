@@ -38,11 +38,14 @@ private slots:
 
     void on_nhsEdit_textChanged(const QString &arg1);
 
+    void on_actionBody_mass_index_triggered();
+
 private:
     Ui::MainWindow *ui;
 
     // My variables
     int newdata;
+    QJsonObject *calculated_values;
 
     // My functions
     void quitfunc();
